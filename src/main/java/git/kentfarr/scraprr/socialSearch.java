@@ -17,7 +17,7 @@ public class socialSearch  {
             Scanner sc = new Scanner(System.in);
             String response = String.valueOf(sc.nextLine());
             if (response.equals("y")) {
-                textContentSearch textContentSearch = new textContentSearch(username, urls);
+                new textContentSearch(username, urls);
             } else {
                 Main.menu(sc);
             }

@@ -9,14 +9,16 @@ import java.util.ArrayList;
 
 public class textContentSearch {
 
-    // This method is used to search the html content of a website
-    public textContentSearch(String target, ArrayList<String> urls) {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/output/output.txt"));
-            String targetLower = target.toLowerCase();
-
-            for (int i = 0; i < urls.size(); i++) {
+    // This method is used to search the text content of a website
+    public textContentSearch(String target, ArrayList<String> urls) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/output/output.txt"));
+        String targetLower = target.toLowerCase();
+        for (int i = 0; i < urls.size(); i++) {
+            System.out.println(urls.size());
+            try {
+                System.out.println("Searching: " + urls.get(i));
                 Document doc = Jsoup.connect(urls.get(i)).get();
+
                 String textContent = doc.wholeText().toLowerCase();
                 if (textContent.contains(targetLower)) {
                     System.out.println("Target Found");
@@ -32,13 +34,14 @@ public class textContentSearch {
                     System.out.println("Social Found: " + urls.get(i) + " " + targetLower);
                 } else {
                     System.out.println("Target Not Found");
+                    continue;
                 }
+                writer.close();
+
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
             }
-            writer.close();
-            Main.menu();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
+        Main.menu();
     }
 }
-
