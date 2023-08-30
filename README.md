@@ -4,7 +4,7 @@ Java Web Scrapper
 
 Description
 
-This Java program serves as r a simple text scraper application. It provides a menu for the user to choose between different functionalities and handles user input for text search.
+This Java program serves as a simple text scraper application. It provides a menu for the user to choose between different functionalities and handles user input for text search.
 
 How to Run
 
