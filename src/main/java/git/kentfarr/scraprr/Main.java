@@ -90,8 +90,8 @@ public class Main {
             System.out.print("Enter the URL or URLS: ");
             urls.addAll(Arrays.asList(sc.nextLine().split(" ")));
             System.out.print("Enter the targets Name: ");
-            String target = sc.nextLine();
-            new textContentSearch(target, urls);
+            String target = sc.nextLine().toLowerCase();
+            new htmlContentSearch(target, urls);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
