@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class textContentSearch {
 
-    // This method is used to search the text content of a website
+    // This method is used to search the html content of a website
     public textContentSearch(String target, ArrayList<String> urls) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/output/output.txt"));
@@ -17,19 +17,25 @@ public class textContentSearch {
 
             for (int i = 0; i < urls.size(); i++) {
                 Document doc = Jsoup.connect(urls.get(i)).get();
-                String textContent = doc.text().toLowerCase();
+                String textContent = doc.wholeText().toLowerCase();
                 if (textContent.contains(targetLower)) {
                     System.out.println("Target Found");
-                    writer.write("Target Found");
                     writer.write("Target: " + targetLower);
-                    writer.write("URLS: " + urls);
+                    writer.newLine();
+                    writer.write("URLS Searched: " + urls);
+                    writer.newLine();
                     writer.write("Content: " + textContent);
+                    writer.newLine();
+                    writer.write("Social Found: " + urls.get(i) + " " + targetLower);
+                    writer.newLine();
                     System.out.println("Results Written to output.txt");
+                    System.out.println("Social Found: " + urls.get(i) + " " + targetLower);
                 } else {
                     System.out.println("Target Not Found");
                 }
             }
             writer.close();
+            Main.menu();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
