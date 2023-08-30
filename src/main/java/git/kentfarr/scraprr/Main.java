@@ -1,4 +1,4 @@
-package com.kent.Scrapper;
+package git.kentfarr.scraprr;
 
 import java.util.ArrayList;
 import java.util.Arrays;
