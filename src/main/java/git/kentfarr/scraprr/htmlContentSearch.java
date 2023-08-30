@@ -6,14 +6,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.apache.hc.client5.http.fluent.Content;
-import org.apache.hc.client5.http.fluent.Request;
-
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Driver;
 import java.util.ArrayList;
 
 public class htmlContentSearch {
@@ -22,7 +17,9 @@ public class htmlContentSearch {
         BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/output/output.txt"));
         WebDriver driver = new ChromeDriver();
         target = target.toLowerCase();
+        synchronized (this) {
             for (String url : urls) {
+                wait(2000);
                 try {
                     System.out.println("Searching: " + url);
                     driver.get(url);
@@ -48,7 +45,7 @@ public class htmlContentSearch {
                     System.out.println("Error: " + e.getMessage());
                 }
             }
-
+        }
         driver.close();
         writer.close();
         Main.menu();
