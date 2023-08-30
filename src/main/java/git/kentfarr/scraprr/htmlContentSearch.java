@@ -31,7 +31,7 @@ public class htmlContentSearch {
 
                     if (textContent.contains(target)) {
                         System.out.println("Target Found at " + url);
-                        writer.write("Target: " + target);
+                        writer.write("Target: " + url);
                         writer.newLine();
                         writer.write("URLS Searched: " + urls);
                         writer.newLine();
