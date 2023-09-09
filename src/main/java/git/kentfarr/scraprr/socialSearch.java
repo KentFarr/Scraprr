@@ -1,7 +1,6 @@
 package git.kentfarr.scraprr;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class socialSearch  {
     public socialSearch(String username) {
@@ -15,14 +14,7 @@ public class socialSearch  {
             for (int i = 0; i < socialMediaSites.length; i++) {
                 urls.add(socialMediaSites[i] + (username));
             }
-            System.out.println("do you want to save the results to a file? (y/n)");
-            Scanner sc = new Scanner(System.in);
-            String response = String.valueOf(sc.nextLine());
-            if (response.equals("y")) {
-                new htmlContentSearch(username, urls);
-            } else {
-                Main.menu(sc);
-            }
+                new htmlContentSearchSlow(username, urls);
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());

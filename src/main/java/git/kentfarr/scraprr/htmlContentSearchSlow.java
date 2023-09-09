@@ -1,23 +1,29 @@
 package git.kentfarr.scraprr;
 
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class htmlContentSearch {
+public class htmlContentSearchSlow {
 
-    public htmlContentSearch(String target, ArrayList<String> urls) throws IOException, InterruptedException {
+    public htmlContentSearchSlow(String target, ArrayList<String> urls) throws IOException, InterruptedException {
         BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/output/output.txt"));
+        WebDriver driver = new ChromeDriver();
         target = target.toLowerCase();
-
+        synchronized (this) {
             for (String url : urls) {
+                wait(1000);
                 try {
                     System.out.println("Searching: " + url);
-                    String pageSource = Jsoup.connect(url).get().html();
+                    driver.get(url);
+                    String pageSource = driver.getPageSource();
                     Document doc = Jsoup.parse(pageSource);
                     Elements elements = doc.select("body");
                     String textContent = elements.text().toLowerCase();
@@ -25,9 +31,7 @@ public class htmlContentSearch {
 
                     if (textContent.contains(target)) {
                         System.out.println("Target Found at " + url);
-                        writer.write("Target: " + target);
-                        writer.newLine();
-                        writer.write("Target url: " + url);
+                        writer.write("Target: " + url);
                         writer.newLine();
                         writer.write("URLS Searched: " + urls);
                         writer.newLine();
@@ -40,8 +44,19 @@ public class htmlContentSearch {
                 } catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
                 }
+            }
         }
+        driver.close();
         writer.close();
+
     }
 }
+
+
+
+
+
+
+
+
 
