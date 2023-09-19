@@ -33,9 +33,12 @@ public class htmlContentSearchSlow {
                         System.out.println("Target Found at " + url);
                         writer.write("Target: " + url);
                         writer.newLine();
+                        writer.newLine();
                         writer.write("URLS Searched: " + urls);
                         writer.newLine();
+                        writer.newLine();
                         writer.write("Content: " + textContent);
+                        writer.newLine();
                         writer.newLine();
                         System.out.println("Results Written to output.txt");
                     } else {

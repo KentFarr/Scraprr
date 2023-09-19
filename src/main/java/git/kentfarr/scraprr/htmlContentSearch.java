@@ -27,11 +27,15 @@ public class htmlContentSearch {
                         System.out.println("Target Found at " + url);
                         writer.write("Target: " + target);
                         writer.newLine();
+                        writer.newLine();
                         writer.write("Target url: " + url);
+                        writer.newLine();
                         writer.newLine();
                         writer.write("URLS Searched: " + urls);
                         writer.newLine();
+                        writer.newLine();
                         writer.write("Content: " + textContent);
+                        writer.newLine();
                         writer.newLine();
                         System.out.println("Results Written to output.txt");
                     } else {

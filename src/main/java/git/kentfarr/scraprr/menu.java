@@ -14,6 +14,7 @@ public class menu {
 
 
         JFrame frame = new JFrame("Scraprr");
+        // finds the size of the frame then dives it by 10 to center it
         int x = (int) ((width / 10) - (frame.getWidth() / 10));
         int y = (int) ((height / 10) - (frame.getHeight() / 10));
 
